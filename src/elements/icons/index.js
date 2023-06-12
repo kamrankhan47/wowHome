@@ -1,5 +1,14 @@
+export {default as All} from './All';
 export {default as Booking} from './Booking';
+export {default as Clean} from './Clean';
+export {default as Food} from './Food';
+export {default as Frame} from './Frame';
 export {default as Home} from './Home';
+export {default as Laundry} from './Laundry';
+export {default as Location} from './Location';
 export {default as Man} from './Man';
+export {default as Pest} from './Pest';
+export {default as Repair} from './Repair';
 export {default as Search} from './Search';
+export {default as Time} from './Time';
 export {default as Vector} from './Vector';
