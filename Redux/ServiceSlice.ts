@@ -18,7 +18,7 @@ const initialState: ServiceState = {
 export const getAllService = createAsyncThunk(
     "service/getAllService",
     async ()=>{
-        const response = await axios.get("http://192.168.0.101:8080/services")
+        const response = await axios.get("http://172.16.0.103:8080/services")
         return response.data
             
     }
@@ -27,10 +27,13 @@ export const getAllService = createAsyncThunk(
 export const getbyidService = createAsyncThunk(
     "service/getbyidService",
     async (id:number)=>{
-        const response = await axios.get(`http://192.168.0.101:8080/services/${id}`)
+        const response = await axios.get(`http://172.16.0.103:8080/services/${id}`)
         return response.data
     }
 )
+
+
+
 
 
 const ServiceSlice = createSlice({

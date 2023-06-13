@@ -52,7 +52,7 @@ const Home = ({ navigation }: any) => {
       <StatusBar translucent backgroundColor="#6e6be8" />
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>Hi Mahir,</Text>
+          <Text style={styles.headerText}>Hi Tony,</Text>
           <Text style={styles.subHeaderText}>Need Some Help Today?</Text>
           <View style={styles.searchContainer}>
             <SvgSearch style={styles.searchIcon} />

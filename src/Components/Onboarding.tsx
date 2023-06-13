@@ -18,7 +18,7 @@ import Paginator from './Paginator';
 const { width, height } = Dimensions.get('screen');
 const COLORS = { primary: 'FFFFFF', white: '#fff' };
 
-const Onboarding = () => {
+const Onboarding = ({navigation}:any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slideRef = useRef<FlatList<any>>(null); 
@@ -110,16 +110,12 @@ const Onboarding = () => {
         )}
         {currentIndex === 2 && (
           <>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("Tabs")}>
               <Text style={[styles.button,{backgroundColor:"#e5e5e5"}]}>
-                Log In
+                Start
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={[styles.button,{backgroundColor:"#583EF2",color:"white"}]}>
-                Sign Up
-              </Text>
-            </TouchableOpacity>
+            
           </>
         )}
       </View>

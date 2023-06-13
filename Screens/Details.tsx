@@ -4,9 +4,18 @@ import SvgFrame from '../src/elements/icons/Frame';
 import SvgTime from '../src/elements/icons/Time';
 import SvgLocation from '../src/elements/icons/Location';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorites } from '../Redux/FavoritesSlice';
 
 const Details = ({route, navigation}: any) => {
+  const dispatch = useDispatch<any>();
+ 
   const {item} = route.params;
+  
+  const addtobookings=(item:any)=>{
+     dispatch(addFavorites(item))
+   
+  }
 
   return (
     <View style={styles.container}>
@@ -58,7 +67,7 @@ const Details = ({route, navigation}: any) => {
         <Text>{item.location}</Text>
         </View>
       </View>
-      <TouchableOpacity style={{width:140,height:50,backgroundColor:"#583EF2",borderRadius:10,justifyContent:"center",marginTop:20}}>
+      <TouchableOpacity style={{width:140,height:50,backgroundColor:"#583EF2",borderRadius:10,justifyContent:"center",marginTop:20,}} onPress={()=>addtobookings(item)}>
         <Text style={{textAlign:"center",fontSize:14,color:'white',fontFamily:"Poppins-Medium"}}>
           Book Now
         </Text>
