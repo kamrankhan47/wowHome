@@ -81,10 +81,7 @@ Contributions to wowHome are welcome! If you want to contribute to this project,
 
 Before making any significant changes, it is recommended to open an issue to discuss the proposed changes and ensure they align with the project's goals.
 
-## License
-wowHome is licensed under the MIT License. For more information, please refer to the [LICENSE](LICENSE)
 
- file.
 
 ## Contact
 If you have any questions, suggestions, or feedback, feel free to contact the project maintainer, Kamran Khan, via email: kamrankhan47@mail.ru
