@@ -59,6 +59,17 @@ Note: Please ensure you have Node.js and npm (Node Package Manager) installed on
 - Web Scraping: Techniques used to extract data from websites
 - HTML, CSS, and JavaScript: The fundamental web technologies used for UI and interactivity
 
+
+## ScreenShots
+![screen7](https://github.com/kamrankhan47/wowHome/assets/93709853/358b949c-fa04-4e72-9bb7-c142d6d866eb)
+![screen6](https://github.com/kamrankhan47/wowHome/assets/93709853/ce1a3d69-04c8-4031-b8eb-66a7a65b92d6)
+![screen5](https://github.com/kamrankhan47/wowHome/assets/93709853/7b240f02-b86f-4d39-a245-cefdbff31252)
+![screen4](https://github.com/kamrankhan47/wowHome/assets/93709853/260cf4b3-025f-4fbc-a4aa-48827bbf26bf)
+![screen3](https://github.com/kamrankhan47/wowHome/assets/93709853/db3944bc-25d1-4fca-8c91-446e9c1338a0)
+![screen2](https://github.com/kamrankhan47/wowHome/assets/93709853/249dc10a-094f-4446-9dbe-57c63a471092)
+![screen1](https://github.com/kamrankhan47/wowHome/assets/93709853/1f8cccb6-901c-4925-a7b7-97aedb8e1aab)
+
+
 ## Contributing
 Contributions to wowHome are welcome! If you want to contribute to this project, please follow these steps:
 
