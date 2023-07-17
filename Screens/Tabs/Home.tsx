@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -13,21 +13,21 @@ import {
 import SvgSearch from '../../src/elements/icons/Search';
 import cleaningServiceCategories from './cleaning';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory } from '../../Redux/CategorySlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAllCategory, spesificService} from '../../Redux/CategorySlice';
 import SvgAll from '../../src/elements/icons/All';
 import SvgClean from '../../src/elements/icons/Clean';
 import SvgRepair from '../../src/elements/icons/Repair';
 import SvgPest from '../../src/elements/icons/Pest';
 import SvgFood from '../../src/elements/icons/Food';
 import SvgLaundry from '../../src/elements/icons/Laundry';
-import { getAllService } from '../../Redux/ServiceSlice';
+import {getAllService} from '../../Redux/ServiceSlice';
 
-const Home = ({ navigation }: any) => {
+const Home = ({navigation}: any) => {
   const [first, setfirst] = useState<any>([]);
   const dispatch = useDispatch<any>();
   const services = useSelector((state: any) => state.service.data);
-  const [activeCategory, setActiveCategory] = useState('');
+  const spesificServiceData = useSelector((state: any) => state.category.data);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
@@ -35,11 +35,15 @@ const Home = ({ navigation }: any) => {
     dispatch(getAllService());
   }, []);
 
+  const getSpecificService = (id: any) => {
+    dispatch(spesificService(id));
+  }
+
   const handleSearch = (text: string) => {
     setSearchQuery(text);
     if (text) {
       const filteredServices = services.filter((service: any) =>
-        service.name.toLowerCase().includes(text.toLowerCase())
+        service.name.toLowerCase().includes(text.toLowerCase()),
       );
       setFilteredData(filteredServices);
     } else {
@@ -68,65 +72,33 @@ const Home = ({ navigation }: any) => {
       </View>
       <View style={styles.categoriesContainer}>
         <View style={styles.categoriesRow}>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'All' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('All')}
-          >
+          <TouchableOpacity style={[styles.categoryButton]}>
             <SvgAll />
             <Text style={styles.categoryButtonText}>All</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'Clean' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('Clean')}
+          <TouchableOpacity style={[styles.categoryButton]}
+          onPress={()=>getSpecificService("6485eed5e2b0701bf0c11e49")}
           >
             <SvgClean />
             <Text style={styles.categoryButtonText}>Clean</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'Repair' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('Repair')}
+          <TouchableOpacity style={[styles.categoryButton]}
+          onPress={()=>getSpecificService("6485ef35fd9938dc6e85c6fd")}
           >
             <SvgRepair />
             <Text style={styles.categoryButtonText}>Repair</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.categoriesRow}>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'Pest Control' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('Pest Control')}
-          >
+          <TouchableOpacity style={[styles.categoryButton]}>
             <SvgPest />
             <Text style={styles.categoryButtonText}>Pest Control</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'Food' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('Food')}
-          >
+          <TouchableOpacity style={[styles.categoryButton]}>
             <SvgFood />
             <Text style={styles.categoryButtonText}>Food</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.categoryButton,
-              activeCategory === 'Laundry' && styles.activeCategoryButton,
-            ]}
-            onPress={() => setActiveCategory('Laundry')}
-          >
+          <TouchableOpacity style={[styles.categoryButton]}>
             <SvgLaundry />
             <Text style={styles.categoryButtonText}>Laundry</Text>
           </TouchableOpacity>
@@ -135,40 +107,44 @@ const Home = ({ navigation }: any) => {
       <View>
         <Text style={styles.toppick}>Top Pick</Text>
       </View>
-      <View style={{ height: 300, marginHorizontal: 20 }}>
+      <View style={{height: 300, marginHorizontal: 20}}>
         <FlatList
-          style={{ flex: 1 }}
-          contentContainerStyle={{ gap: 20 }}
+          style={{flex: 1}}
+          contentContainerStyle={{gap: 20}}
           horizontal={true}
-          data={searchQuery ? filteredData : services}
+          data={ spesificServiceData}
           keyExtractor={(item: any) => item._id}
-          renderItem={({ item, index }) => (
+          renderItem={({item, index}) => (
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 marginVertical: 10,
-              }}
-            >
+              }}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Details', { item })}
-              >
+                onPress={() => navigation.navigate('Details', {item})}>
                 <View
                   style={{
                     width: 150,
                     height: 200,
                     backgroundColor: '#e8e8fd',
                     borderRadius: 10,
-                    alignItems:"center",
-                    gap:10,
-                    justifyContent:"center"
-
-                  }}
-                >
-                  <Text style={{fontSize:16,color:"#38385E"}}>{item.name}</Text>
+                    alignItems: 'center',
+                    gap: 10,
+                    justifyContent: 'center',
+                  }}>
+                  <Text style={{fontSize: 16, color: '#38385E'}}>
+                    {item.name}
+                  </Text>
                   <Image
-                    source={{ uri: item.image }}
-                    style={{ width: 120, height: 120,borderBottomLeftRadius:60,borderBottomRightRadius:60,borderTopRightRadius:60 }}
+                    source={{uri: item.image}}
+                    style={{
+                      width: 120,
+                      height: 120,
+                      borderBottomLeftRadius: 60,
+                      borderBottomRightRadius: 60,
+                      borderTopRightRadius: 60,
+                    }}
                   />
                 </View>
               </TouchableOpacity>

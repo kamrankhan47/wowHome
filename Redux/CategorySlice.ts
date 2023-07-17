@@ -17,17 +17,27 @@ const initialState: CategoryState = {
 export const getAllCategory = createAsyncThunk(
     "category/getAllCategory",
     async ()=>{
-        const response = await axios.get("http://172.16.0.102:8080/categories")
+        const response = await axios.get("http://172.16.0.72:8080/categories")
         return response.data
     }
 )
 export const getbyidCategory = createAsyncThunk(
     "category/getbyidCategory",
     async (id:number)=>{
-        const response = await axios.get(`http://172.16.0.102:8080/categories/${id}`)
+        const response = await axios.get(`http://172.16.0.72:8080/categories/${id}`)
         return response.data
     }
 )
+
+export const spesificService = createAsyncThunk(
+    "category/spesificService",
+    async (id:number)=>{
+        const response = await axios.get(`http://172.16.0.72:8080/categories/${id}/service`)
+        console.log(response.data);
+        return response.data
+    }
+)
+
 
 const CategorySlice = createSlice({
     name:"category",
@@ -55,6 +65,17 @@ const CategorySlice = createSlice({
         state.error = true
         state.loading = false
        })
+
+         builder.addCase(spesificService.pending,(state,action)=>{
+        state.loading = true
+
+         }).addCase(spesificService.fulfilled,(state,action)=>{
+        state.data = action.payload
+        state.loading = false
+         }).addCase(spesificService.rejected,(state,action)=>{
+        state.error = true
+        state.loading = false
+         })
 
     }
 
